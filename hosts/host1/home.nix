@@ -7,6 +7,16 @@
   home.homeDirectory = "/home/itsthicc";
   home.stateVersion = "25.11";
 
+  programs.ssh = {
+    enable        = true;
+    addKeysToAgent = "yes";  # prompt once per session, then cache in agent
+    matchBlocks = {
+      "github.com"   = { identityFile = "~/.ssh/nix-os"; };
+      "gitlab.com"   = { identityFile = "~/.ssh/nix-os"; };
+      "codeberg.org" = { identityFile = "~/.ssh/nix-os"; };
+    };
+  };
+
   programs.git = {
     enable = true;
     userName = "Adrian";
